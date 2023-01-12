@@ -1,0 +1,14 @@
+@import '../colors';
+@import '../mixins';
+@import '../sizes';
+
+.container {
+  padding: 20px 0;
+  background-color: $secondary;
+
+  &Inner {
+    width: 100%;
+    max-width: $laptop;
+    margin: 0 auto;
+  }
+}
