@@ -1,0 +1,5 @@
+@mixin primaryText {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
+  color: $textPrimary;
+}
