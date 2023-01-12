@@ -1,0 +1,28 @@
+@import '../sizes';
+
+.gridCol1,
+.gridCol2,
+.gridCol4 {
+  flex-grow: 1;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.gridCol1 {
+  grid-template-columns: 1fr;
+}
+.gridCol2 {
+  grid-template-columns: 1fr;
+  @media screen and (min-width: $mobileL) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.gridCol4 {
+  grid-template-columns: 1fr;
+  @media screen and (min-width: $mobileL) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: $laptop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

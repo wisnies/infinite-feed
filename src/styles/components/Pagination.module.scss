@@ -1,0 +1,39 @@
+@import '../sizes';
+@import '../colors';
+@import '../mixins';
+.container {
+  width: fit-content;
+  margin: 60px auto 0 auto;
+}
+
+.btnCurrent,
+.btnActive {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  margin: 0 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  @include primaryText;
+  font-size: 12px;
+  padding: 2px 5px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and (min-width: $mobileL) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: $tablet) {
+    font-size: 16px;
+  }
+}
+
+.btnCurrent {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btnInactive {
+  display: none;
+}
