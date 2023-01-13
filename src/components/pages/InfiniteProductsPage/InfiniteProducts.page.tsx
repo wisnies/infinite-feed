@@ -47,6 +47,7 @@ export const InfiniteProductsPage: React.FC = () => {
   const perPage = 8;
   const {
     isLoading,
+    isFetchingNextPage,
     isError,
     error,
     data,
@@ -68,13 +69,11 @@ export const InfiniteProductsPage: React.FC = () => {
       },
     }
   );
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
   if (isError) {
     return <p>{error.message}</p>;
   }
 
+  console.log(isLoading, isFetchingNextPage);
   return (
     <>
       <ProductListControlls
@@ -82,35 +81,37 @@ export const InfiniteProductsPage: React.FC = () => {
         total={data?.pages[0].page.total}
         page={Number(data?.pageParams.length)}
         perPage={perPage}
-        dataLength={Number(
-          data?.pages.reduce((acc, curr) => {
-            return acc + curr.page.products.length;
-          }, 0)
-        )}
+        dataLength={data?.pages.reduce((acc, curr) => {
+          return acc + curr.page.products.length;
+        }, 0)}
       />
-      <InfiniteScroll
-        dataLength={Number(
-          data?.pages.reduce((acc, curr) => {
-            return acc + curr.page.products.length;
-          }, 0)
-        )}
-        next={fetchNextPage}
-        hasMore={!!hasNextPage}
-        loader={<ProductListSkeleton />}
-        endMessage={<p className={styles.endMsg}>That is all for now</p>}
-      >
-        <ProductList>
-          {data?.pages.map((page, index) => {
-            return (
-              <Fragment key={index}>
-                {page.page.products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </Fragment>
-            );
-          })}
-        </ProductList>
-      </InfiniteScroll>
+      {isLoading ? (
+        <ProductListSkeleton />
+      ) : (
+        <InfiniteScroll
+          dataLength={Number(
+            data?.pages.reduce((acc, curr) => {
+              return acc + curr.page.products.length;
+            }, 0)
+          )}
+          next={fetchNextPage}
+          hasMore={!!hasNextPage}
+          loader={<ProductListSkeleton />}
+          endMessage={<p className={styles.endMsg}>That is all for now</p>}
+        >
+          <ProductList>
+            {data?.pages.map((page, index) => {
+              return (
+                <Fragment key={index}>
+                  {page.page.products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </Fragment>
+              );
+            })}
+          </ProductList>
+        </InfiniteScroll>
+      )}
     </>
   );
 };

@@ -6,13 +6,13 @@ type ProductListControllsProps = {
   total: number | undefined;
   page: number;
   perPage: number;
-  dataLength?: number;
+  dataLength?: number | undefined;
 };
 
 export const ProductListControlls: React.FC<ProductListControllsProps> = ({
   mode,
   total = 0,
-  page,
+  page = 0,
   perPage,
   dataLength = 0,
 }: ProductListControllsProps) => {
