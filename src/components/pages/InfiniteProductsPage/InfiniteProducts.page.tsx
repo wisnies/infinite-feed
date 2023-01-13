@@ -10,6 +10,9 @@ import { iProductsResponse } from '../../../libs/interfaces/ProductsResponse.int
 import ProductCard from '../../ProductCard';
 import ProductList from '../../ProductList';
 import ProductListControlls from '../../ProductListControlls';
+import ProductListSkeleton from '../../ProductListSkeleton';
+
+import styles from '../../../styles/components/ProductList.module.scss';
 
 const fetchProducts = async (
   { pageParam = 0 }: QueryFunctionContext,
@@ -72,11 +75,6 @@ export const InfiniteProductsPage: React.FC = () => {
     return <p>{error.message}</p>;
   }
 
-  console.log(
-    data?.pages.reduce((acc, curr) => {
-      return acc + curr.page.products.length;
-    }, 0)
-  );
   return (
     <>
       <ProductListControlls
@@ -98,11 +96,8 @@ export const InfiniteProductsPage: React.FC = () => {
         )}
         next={fetchNextPage}
         hasMore={!!hasNextPage}
-        loader={
-          <>
-            <p>loading</p>
-          </>
-        }
+        loader={<ProductListSkeleton />}
+        endMessage={<p className={styles.endMsg}>That is all for now</p>}
       >
         <ProductList>
           {data?.pages.map((page, index) => {

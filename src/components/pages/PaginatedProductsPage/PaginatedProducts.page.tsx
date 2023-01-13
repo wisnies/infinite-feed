@@ -8,6 +8,7 @@ import Pagination from '../../Pagination';
 import ProductCard from '../../ProductCard';
 import ProductList from '../../ProductList';
 import ProductListControlls from '../../ProductListControlls';
+import ProductListSkeleton from '../../ProductListSkeleton';
 
 const fetchProducts = async (
   page: number,
@@ -54,9 +55,6 @@ export const PaginatedProductsPage: React.FC = () => {
     navigate(`/products-pag?page=${number + 1}`, {});
   };
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
   if (isError) {
     return <h2>{error.message}</h2>;
   }
@@ -69,19 +67,25 @@ export const PaginatedProductsPage: React.FC = () => {
         page={page}
         perPage={perPage}
       />
-      <ProductList>
-        {data?.products.map((product: iProduct) => {
-          return <ProductCard key={product.id} product={product} />;
-        })}
-      </ProductList>
-      <Pagination
-        page={page}
-        perPage={perPage}
-        total={data?.total}
-        isPreviousData={isPreviousData}
-        hasMore={!!data?.hasMore}
-        changePage={changePage}
-      />
+      {isLoading ? (
+        <ProductListSkeleton />
+      ) : (
+        <>
+          <ProductList>
+            {data?.products.map((product: iProduct) => {
+              return <ProductCard key={product.id} product={product} />;
+            })}
+          </ProductList>
+          <Pagination
+            page={page}
+            perPage={perPage}
+            total={data?.total}
+            isPreviousData={isPreviousData}
+            hasMore={!!data?.hasMore}
+            changePage={changePage}
+          />
+        </>
+      )}
     </>
   );
 };
