@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { RouteViews } from './components/RouteViews/RouteViews';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 import { UiContextProvider } from './context/uiContext';
 
 import { queryClient } from './libs/client';
@@ -15,6 +16,7 @@ export const App: React.FC = () => {
       <UiContextProvider>
         <Router>
           <ScrollToTop />
+          <ScrollToTopBtn />
           <Header />
           <RouteViews />
           <Footer />
