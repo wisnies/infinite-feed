@@ -6,16 +6,17 @@ type ProductListControllsProps = {
   total: number | undefined;
   page: number;
   perPage: number;
+  dataLength?: number;
 };
 
 export const ProductListControlls: React.FC<ProductListControllsProps> = ({
   mode,
-  total,
+  total = 0,
   page,
   perPage,
+  dataLength = 0,
 }: ProductListControllsProps) => {
   const { displayType, setDisplayType } = useUiContext();
-
   return (
     <div className={styles.container}>
       <div className={styles.containerInner}>
@@ -25,7 +26,7 @@ export const ProductListControlls: React.FC<ProductListControllsProps> = ({
               ? `Products ${page * perPage + 1} - ${
                   (page + 1) * perPage >= 100 ? 100 : (page + 1) * perPage
                 } out of ${total}`
-              : page}
+              : `Products ${total > 0 ? 1 : 0} - ${dataLength} out of ${total}`}
           </p>
         </div>
         <div className={styles.controlls}>
