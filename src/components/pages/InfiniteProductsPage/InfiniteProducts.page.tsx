@@ -56,24 +56,18 @@ export const InfiniteProductsPage: React.FC = () => {
   }: UseInfiniteQueryResult<iInfiniteProducts, Error> = useInfiniteQuery<
     iInfiniteProducts,
     Error
-  >(
-    ['products-inf'],
-    (ctx: QueryFunctionContext) => fetchProducts(ctx, perPage),
-    {
-      getNextPageParam: (lastPage, pages) => {
-        if (lastPage.page.products.length === perPage) {
-          return pages.length;
-        } else {
-          return undefined;
-        }
-      },
-    }
-  );
+  >(['products'], (ctx: QueryFunctionContext) => fetchProducts(ctx, perPage), {
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.page.products.length === perPage) {
+        return pages.length;
+      } else {
+        return undefined;
+      }
+    },
+  });
   if (isError) {
     return <p>{error.message}</p>;
   }
-
-  console.log(isLoading, isFetchingNextPage);
   return (
     <>
       <ProductListControlls
