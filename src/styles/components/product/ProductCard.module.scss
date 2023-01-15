@@ -1,0 +1,176 @@
+@import '../../sizes';
+@import '../../colors';
+@import '../../mixins';
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.imgContainer1,
+.imgContainer2,
+.imgContainer4 {
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.imgContainer1 {
+  height: 200px;
+  @media screen and (min-width: $mobileL) {
+    height: 300px;
+  }
+  @media screen and (min-width: $tablet) {
+    height: 450px;
+  }
+  @media screen and (min-width: $laptop) {
+    height: 600px;
+  }
+}
+.imgContainer2 {
+  height: 200px;
+  @media screen and (min-width: $tablet) {
+    height: 300px;
+  }
+  @media screen and (min-width: $laptop) {
+    height: 450px;
+  }
+}
+.imgContainer4 {
+  height: 200px;
+  @media screen and (min-width: $laptop) {
+    height: 300px;
+  }
+}
+
+.badge {
+  &Discount,
+  &Stock {
+    padding: 5px 10px;
+    @include primaryText;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 80px;
+    font-size: 12px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 16px;
+    }
+  }
+  &Discount {
+    background-color: $primary;
+    font-weight: 700;
+  }
+  &Stock {
+    background-color: red;
+  }
+  &Container {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    display: grid;
+    grid-gap: 2px;
+  }
+}
+
+.cartBtn {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0%;
+  right: 0;
+  padding: 5px 10px;
+  @include primaryText;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: $secondary;
+  color: $textPrimary;
+
+  &:hover {
+    background-color: darken($secondary, 10);
+  }
+
+  @media screen and (min-width: $mobileL) {
+    font-size: 16px;
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  a {
+    @include primaryText;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+    color: $textSecondary;
+    font-size: 16px;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (min-width: $mobileL) {
+      font-size: 18px;
+    }
+  }
+
+  p {
+    @include primaryText;
+    width: fit-content;
+    color: $textSecondary;
+    font-size: 14px;
+
+    @media screen and (min-width: $mobileL) {
+      font-size: 16px;
+    }
+    span {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.5);
+      margin-left: 5px;
+      font-style: italic;
+      text-decoration: line-through;
+
+      @media screen and (min-width: $mobileL) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  & .mockText80,
+  .mockText60,
+  .mockText40 {
+    background-color: #ced0ce;
+    color: #ced0ce;
+    font-size: 16px;
+  }
+
+  & .mockText80 {
+    width: 80%;
+  }
+  & .mockText60 {
+    width: 60%;
+  }
+  & .mockText40 {
+    width: 40%;
+  }
+}

@@ -6,9 +6,14 @@ import {
   UseQueryResult,
 } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 import { iInfiniteProducts } from '../../../libs/interfaces/InfiniteProducts.interface';
 import { iProduct } from '../../../libs/interfaces/Product.interface';
-import { iProductsResponse } from '../../../libs/interfaces/ProductsResponse.interface';
+import ProductDescription from '../../product/ProductDescription';
+import ProductDetails from '../../product/ProductDetails';
+import ProductGallery from '../../product/ProductGallery';
+import ProductDescriptionSkeleton from '../../skeletons/ProductDescriptionSkeleton';
+import ProductGallerySkeleton from '../../skeletons/ProductGallerySkeleton';
 
 const fetchProduct = async (productId: string): Promise<iProduct> => {
   const res = await fetch(`https://dummyjson.com/products/${productId}`);
@@ -53,9 +58,9 @@ export const ProductPage: React.FC = () => {
   const enableQueryByProductId = (id: string) => {
     const index = cachedProducts.findIndex((p) => p.id.toString() === id);
     if (index >= 0) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   };
 
@@ -65,16 +70,39 @@ export const ProductPage: React.FC = () => {
       () => fetchProduct(productId as string),
       {
         enabled: enableQueryByProductId(productId as string),
+        onSuccess: () => {
+          document.title = `${data?.title} Details | Infinite feed | wisnies`;
+        },
       }
     );
+  usePageTitle(`${data?.title} Details`);
 
-  if (isLoading) {
-    // Add skeleton display
-    return <p>Loading</p>;
-  }
   if (isError) {
     return <p>{error.message}</p>;
   }
 
-  return <div>ProductPage Component</div>;
+  return (
+    <ProductDetails>
+      {isLoading ? (
+        <>
+          <ProductGallerySkeleton />
+          <ProductDescriptionSkeleton />
+        </>
+      ) : (
+        <>
+          <ProductGallery thumbnail={data?.thumbnail} images={data?.images} />
+          <ProductDescription
+            title={data?.title}
+            description={data?.description}
+            price={data?.price}
+            discountPercentage={data?.discountPercentage}
+            brand={data?.brand}
+            category={data?.category}
+            rating={data?.rating}
+            stock={data?.stock}
+          />
+        </>
+      )}
+    </ProductDetails>
+  );
 };

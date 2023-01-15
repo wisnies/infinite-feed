@@ -5,10 +5,11 @@ import { iPaginatedProducts } from '../../../libs/interfaces/PaginatedProducts.i
 import { iProduct } from '../../../libs/interfaces/Product.interface';
 import { iProductsResponse } from '../../../libs/interfaces/ProductsResponse.interface';
 import Pagination from '../../Pagination';
-import ProductCard from '../../ProductCard';
-import ProductList from '../../ProductList';
-import ProductListControlls from '../../ProductListControlls';
-import ProductListSkeleton from '../../ProductListSkeleton';
+import ProductCard from '../../product/ProductCard';
+import ProductList from '../../product/ProductList';
+import ProductListControlls from '../../ListControlls';
+import ProductListSkeleton from '../../skeletons/ProductListSkeleton';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 const fetchProducts = async (
   page: number,
@@ -33,6 +34,7 @@ const fetchProducts = async (
   throw new Error('Unable to fetch products');
 };
 export const PaginatedProductsPage: React.FC = () => {
+  usePageTitle('Paginated data fetching');
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const perPage = 8;

@@ -7,12 +7,13 @@ import {
 } from 'react-query';
 import { iInfiniteProducts } from '../../../libs/interfaces/InfiniteProducts.interface';
 import { iProductsResponse } from '../../../libs/interfaces/ProductsResponse.interface';
-import ProductCard from '../../ProductCard';
-import ProductList from '../../ProductList';
-import ProductListControlls from '../../ProductListControlls';
-import ProductListSkeleton from '../../ProductListSkeleton';
+import ProductCard from '../../product/ProductCard';
+import ProductList from '../../product/ProductList';
+import ProductListControlls from '../../ListControlls';
+import ProductListSkeleton from '../../skeletons/ProductListSkeleton';
 
-import styles from '../../../styles/components/ProductList.module.scss';
+import styles from '../../../styles/components/product/ProductList.module.scss';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 const fetchProducts = async (
   { pageParam = 0 }: QueryFunctionContext,
@@ -44,10 +45,11 @@ const fetchProducts = async (
 };
 
 export const InfiniteProductsPage: React.FC = () => {
+  usePageTitle('Infinite data fetching');
   const perPage = 8;
   const {
     isLoading,
-    isFetchingNextPage,
+    // isFetchingNextPage,
     isError,
     error,
     data,

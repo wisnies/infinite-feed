@@ -1,0 +1,27 @@
+@import '../../colors';
+@import '../../sizes';
+
+.container {
+  &Wrapper {
+    margin-top: 10px;
+    width: 100%;
+    max-width: $mobileL;
+    @media screen and (min-width: $tablet) {
+      max-width: $mobileS;
+      margin-top: 0;
+      margin-left: 10px;
+    }
+    @media screen and (min-width: $laptop) {
+      margin-left: 20px;
+    }
+  }
+  padding: 5px;
+  min-width: 280px;
+  width: 100%;
+  @media screen and (min-width: $mobileL) {
+    padding: 10px;
+  }
+  @media screen and (min-width: $laptop) {
+    min-width: $mobileS;
+  }
+}

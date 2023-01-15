@@ -1,0 +1,108 @@
+@import '../sizes';
+@import '../colors';
+@import '../mixins';
+
+.container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: $background;
+  z-index: 99;
+
+  &Inner {
+    width: 100%;
+    max-width: $laptop;
+    margin: 0 auto;
+    color: $textSecondary;
+    background-color: $white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 3px -2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.info {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: $mobileL) {
+    padding-left: 90px;
+  }
+  @media screen and (min-width: $laptop) {
+    padding-left: 140px;
+  }
+
+  p {
+    @include primaryText;
+  }
+}
+
+.controlls {
+  width: 0px;
+  height: fit-content;
+  display: none;
+
+  grid-gap: 10px;
+
+  @media screen and (min-width: $mobileL) {
+    width: 90px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: $laptop) {
+    width: 140px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &Btn1,
+  &Btn2,
+  &Btn4,
+  &Btn1Active,
+  &Btn2Active,
+  &Btn4Active {
+    display: none;
+    @include primaryText;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &Btn1Active,
+  &Btn2Active,
+  &Btn4Active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &Btn1,
+  &Btn2,
+  &Btn1Active,
+  &Btn2Active {
+    @media screen and (min-width: $mobileL) {
+      display: block;
+    }
+  }
+
+  &Btn4,
+  &Btn4Active {
+    @media screen and (min-width: $laptop) {
+      display: block;
+    }
+  }
+}
