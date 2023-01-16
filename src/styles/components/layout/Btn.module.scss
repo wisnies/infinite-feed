@@ -1,0 +1,82 @@
+@import '../../colors';
+@import '../../mixins';
+@import '../../sizes';
+
+.primary,
+.secondary,
+.accent1,
+.accent2,
+.accent3 {
+  border: none;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  height: 100%;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0.5em 1em;
+  @include primaryText;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  text-transform: uppercase;
+  display: grid !important;
+  place-content: center !important;
+
+  @media screen and (min-width: $mobileL) {
+    font-size: 13px;
+  }
+
+  @media screen and (min-width: $laptop) {
+    font-size: 14px;
+  }
+}
+
+.primary {
+  color: $textPrimary !important;
+  background-color: $primary;
+
+  &:hover {
+    background-color: darken($primary, 10);
+  }
+}
+.primary {
+  color: $textPrimary !important;
+  background-color: $primary;
+
+  &:hover {
+    background-color: darken($primary, 10);
+  }
+}
+.secondary {
+  color: $textSecondary !important;
+  background-color: $secondary;
+
+  &:hover {
+    background-color: darken($secondary, 10);
+  }
+}
+.accent1 {
+  color: $textPrimary !important;
+  background-color: $accent1;
+
+  &:hover {
+    background-color: darken($accent1, 10);
+  }
+}
+.accent2 {
+  color: $textPrimary !important;
+  background-color: $accent2;
+
+  &:hover {
+    background-color: darken($accent2, 10);
+  }
+}
+.accent3 {
+  color: $textSecondary !important;
+  background-color: $accent3;
+
+  &:hover {
+    background-color: darken($accent3, 10);
+  }
+}

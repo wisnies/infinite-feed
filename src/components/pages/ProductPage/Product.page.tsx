@@ -90,7 +90,11 @@ export const ProductPage: React.FC = () => {
         </>
       ) : (
         <>
-          <ProductGallery thumbnail={data?.thumbnail} images={data?.images} />
+          <ProductGallery
+            title={data?.title}
+            thumbnail={data?.thumbnail}
+            images={data?.images}
+          />
           <ProductDescription
             title={data?.title}
             description={data?.description}

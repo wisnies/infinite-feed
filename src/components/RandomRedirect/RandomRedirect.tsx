@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from '../../styles/components/RandomRedirect.module.scss';
+import btnStyles from '../../styles/components/layout/Btn.module.scss';
+
 export const RandomRedirect: React.FC = () => {
   const [randomId, setRandomId] = useState(1);
 
@@ -12,10 +15,16 @@ export const RandomRedirect: React.FC = () => {
     generateRandomId();
   }, []);
   return (
-    <div>
+    <div className={styles.container}>
       <p>Current random id: {randomId}</p>
-      <button onClick={generateRandomId}>Generate</button>
-      <Link to={`/products/${randomId}`}>Product details</Link>
+      <div className={styles.btnContainer}>
+        <button onClick={generateRandomId} className={btnStyles.accent2}>
+          Generate
+        </button>
+        <Link to={`/products/${randomId}`} className={btnStyles.primary}>
+          Product Details
+        </Link>
+      </div>
     </div>
   );
 };

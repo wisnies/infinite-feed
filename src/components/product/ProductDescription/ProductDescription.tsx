@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import styles from '../../../styles/components/product/ProductDescription.module.scss';
+import btnStyles from '../../../styles/components/layout/Btn.module.scss';
 import Card from '../../layout/Card';
 
 type ProductDescriptionProps = {
@@ -27,18 +29,28 @@ export const ProductDescription: React.FC<ProductDescriptionProps> = ({
       <Card>
         <div className={styles.container}>
           <h1>{title}</h1>
+          <div className={styles.linkContainer}>
+            <Link to='#' className={styles.fadedLink}>
+              {category}
+            </Link>
+            <div>&gt;</div>
+            <Link to='#' className={styles.fadedLink}>
+              {brand}
+            </Link>
+          </div>
           <p>
-            {category} &gt; {brand}
+            Users rating: <span className={styles.bold}>{rating}</span>
           </p>
           <p>
-            Users rating: <span>{rating}</span>
+            Manufacturer: <span className={styles.bold}>{brand}</span>
           </p>
-          <p>
-            Manufacturer: <span>{brand}</span>
-          </p>
-          <p>{description}</p>
-          {stock > 0 ? <p>Product available</p> : <p>Product unavailable</p>}
-          <p>
+          <p className={styles.description}>{description}</p>
+          {stock > 0 ? (
+            <p className={styles.available}>Product available</p>
+          ) : (
+            <p className={styles.unavailable}>Product unavailable</p>
+          )}
+          <p className={styles.price}>
             {new Intl.NumberFormat('en-Us', {
               style: 'currency',
               currency: 'USD',
@@ -50,6 +62,9 @@ export const ProductDescription: React.FC<ProductDescriptionProps> = ({
               }).format(price)}
             </span>
           </p>
+        </div>
+        <div className={styles.btnContainer}>
+          <button className={btnStyles.accent2}>add to cart</button>
         </div>
       </Card>
     </div>

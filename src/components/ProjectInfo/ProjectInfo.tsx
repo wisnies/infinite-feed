@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from '../../styles/components/ProjectInfo.module.scss';
+import btnStyles from '../../styles/components/layout/Btn.module.scss';
 import Card from '../layout/Card';
 import RandomRedirect from '../RandomRedirect';
 
@@ -32,11 +33,11 @@ export const ProjectInfo: React.FC = () => {
             <li>sass</li>
           </ul>
           <div className={styles.btnContainer}>
-            <Link to='/products-pag' className={styles.btnPrimary}>
-              Paginated products
+            <Link to='/products-pag' className={btnStyles.primary}>
+              Paginated display
             </Link>
-            <Link to='products-inf' className={styles.btnSecondary}>
-              Infinite products
+            <Link to='products-inf' className={btnStyles.accent2}>
+              Infinite display
             </Link>
           </div>
           <RandomRedirect />

@@ -65,6 +65,7 @@
     @include primaryText;
     text-transform: uppercase;
     text-align: center;
+    color: $textPrimary;
     min-width: 80px;
     font-size: 12px;
 
@@ -73,11 +74,12 @@
     }
   }
   &Discount {
-    background-color: $primary;
+    background-color: $success;
+
     font-weight: 700;
   }
   &Stock {
-    background-color: red;
+    background-color: $error;
   }
   &Container {
     position: absolute;
@@ -100,7 +102,7 @@
   @include primaryText;
   font-size: 14px;
   font-weight: 700;
-  background-color: $secondary;
+  background-color: $accent2;
   color: $textPrimary;
 
   &:hover {
